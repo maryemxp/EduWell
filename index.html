@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniSphere - Ultimate AI Ecosystem</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <h1><i class="fa-solid fa-bolt-lightning"></i> OmniSphere</h1>
+            <p>Advanced AI & Learning Ecosystem</p>
+        </header>
+
+        <div id="main-dashboard" class="screen active">
+            <div class="category-grid">
+                <div class="category-card" onclick="navigateTo('sec-ai')">
+                    <i class="fa-solid fa-brain icon-ai"></i>
+                    <h3>AI Vision</h3>
+                    <p>Calorie & Height Analysis</p>
+                </div>
+                <div class="category-card" onclick="navigateTo('sec-languages')">
+                    <i class="fa-solid fa-language icon-lang"></i>
+                    <h3>Language Hub</h3>
+                    <p>30 Languages & 20 Stories</p>
+                </div>
+                <div class="category-card" onclick="navigateTo('sec-health')">
+                    <i class="fa-solid fa-heartbeat icon-health"></i>
+                    <h3>Health</h3>
+                    <p>Sleep & Hydration AI</p>
+                </div>
+                <div class="category-card" onclick="navigateTo('sec-edu')">
+                    <i class="fa-solid fa-graduation-cap icon-edu"></i>
+                    <h3>Education</h3>
+                    <p>Math Olympiad & Pomodoro</p>
+                </div>
+                <div class="category-card" onclick="navigateTo('sec-geo')">
+                    <i class="fa-solid fa-earth-americas icon-geo"></i>
+                    <h3>Geography</h3>
+                    <p>195 Countries & Secrets</p>
+                </div>
+                <div class="category-card" onclick="navigateTo('sec-entertainment')">
+                    <i class="fa-solid fa-puzzle-piece icon-ent"></i>
+                    <h3>Entertainment</h3>
+                    <p>Puzzle & Scramble</p>
+                </div>
+                <div class="category-card" onclick="navigateTo('sec-gaming')">
+                    <i class="fa-solid fa-gamepad icon-game"></i>
+                    <h3>Gaming</h3>
+                    <p>AI Tic-Tac-Toe & Memory</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="sec-ai" class="screen">
+            <button class="back-btn" onclick="navigateTo('main-dashboard')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h2><i class="fa-solid fa-brain"></i> AI Core</h2>
+            <div class="options-grid">
+                <div class="option-card" onclick="navigateTo('ai-calories')">
+                    <i class="fa-solid fa-utensils"></i>
+                    <h4>AI Calorie Scanner</h4>
+                </div>
+                <div class="option-card" onclick="navigateTo('ai-height')">
+                    <i class="fa-solid fa-ruler-vertical"></i>
+                    <h4>AI Height Estimator</h4>
+                </div>
+            </div>
+        </div>
+
+        <div id="ai-calories" class="screen">
+            <button class="back-btn" onclick="navigateTo('sec-ai')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h3>Calorie Vision</h3>
+            <div class="action-box">
+                <input type="file" id="calorie-upload" accept="image/*" class="file-input">
+                <label for="calorie-upload" class="custom-file-btn"><i class="fa-solid fa-camera"></i> Capture Meal</label>
+                <div id="calorie-preview" class="image-preview"></div>
+                <button class="action-btn" onclick="processCalorizer()">Start AI Analysis</button>
+                <div id="calorie-result" class="result-box"></div>
+            </div>
+        </div>
+
+        <div id="ai-height" class="screen">
+            <button class="back-btn" onclick="navigateTo('sec-ai')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h3>Height Estimator</h3>
+            <div class="action-box">
+                <input type="file" id="height-upload" accept="image/*" class="file-input">
+                <label for="height-upload" class="custom-file-btn"><i class="fa-solid fa-user"></i> Capture Photo</label>
+                <div id="height-preview" class="image-preview"></div>
+                <button class="action-btn" onclick="processHeight()">Estimate Height</button>
+                <div id="height-result" class="result-box"></div>
+            </div>
+        </div>
+
+        <div id="sec-languages" class="screen">
+            <button class="back-btn" onclick="navigateTo('main-dashboard')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h2><i class="fa-solid fa-language"></i> Learning Hub</h2>
+            <div class="action-box">
+                <p>Select your native language:</p>
+                <select id="lang-native" class="text-input"></select>
+                <p>Select language to learn:</p>
+                <select id="lang-target" class="text-input"></select>
+                <button class="action-btn" onclick="generateLanguageStoriesDashboard()">Load Stories</button>
+            </div>
+        </div>
+
+        <div id="lang-stories-list" class="screen">
+            <button class="back-btn" onclick="navigateTo('sec-languages')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h3 id="stories-title">Stories</h3>
+            <div id="stories-grid" class="options-grid"></div>
+        </div>
+
+        <div id="lang-story-viewer" class="screen">
+            <button class="back-btn" onclick="navigateTo('lang-stories-list')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h3 id="viewer-story-title">Story Title</h3>
+            <div class="action-box">
+                <div class="story-block target-block">
+                    <span class="lang-tag" id="tag-target">Target</span>
+                    <p id="story-text-target" class="story-passage"></p>
+                </div>
+                <div class="story-block native-block" style="margin-top:20px;">
+                    <span class="lang-tag" id="tag-native">Native</span>
+                    <p id="story-text-native" class="story-passage"></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="sec-health" class="screen">
+            <button class="back-btn" onclick="navigateTo('main-dashboard')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h2>Health Hub</h2>
+            <div class="options-grid">
+                <div class="option-card" onclick="navigateTo('health-sleep')">
+                    <i class="fa-solid fa-bed"></i><h4>Sleep Optimizer</h4>
+                </div>
+                <div class="option-card" onclick="navigateTo('health-water')">
+                    <i class="fa-solid fa-glass-water"></i><h4>Hydration Plan</h4>
+                </div>
+            </div>
+        </div>
+
+        <div id="health-sleep" class="screen">
+            <button class="back-btn" onclick="navigateTo('sec-health')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h3>Sleep Calculator</h3>
+            <div class="action-box">
+                <p>Calculate wake up times based on REM cycles if you sleep now:</p>
+                <button class="action-btn" onclick="calculateSleep()">Calculate</button>
+                <div id="sleep-result" class="result-box"></div>
+            </div>
+        </div>
+
+        <div id="health-water" class="screen">
+            <button class="back-btn" onclick="navigateTo('sec-health')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h3>Hydration Coach</h3>
+            <div class="action-box">
+                <input type="number" id="user-weight" placeholder="Your weight (kg)" class="text-input">
+                <button class="action-btn" onclick="initHydration()">Get Plan</button>
+                <div id="hydration-result" class="result-box"></div>
+            </div>
+        </div>
+
+        <div id="sec-edu" class="screen">
+            <button class="back-btn" onclick="navigateTo('main-dashboard')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h2>Education</h2>
+            <div class="options-grid">
+                <div class="option-card" onclick="navigateTo('edu-math')">
+                    <i class="fa-solid fa-calculator"></i><h4>Math Olympiad</h4>
+                </div>
+                <div class="option-card" onclick="navigateTo('edu-pomodoro')">
+                    <i class="fa-solid fa-stopwatch"></i><h4>Pomodoro Timer</h4>
+                </div>
+            </div>
+        </div>
+
+        <div id="edu-math" class="screen">
+            <button class="back-btn" onclick="navigateTo('sec-edu')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <div class="action-box">
+                <div class="score-board">Level: <span id="math-level">1</span> | Score: <span id="math-score">0</span></div>
+                <div id="math-question" class="math-q">Ready?</div>
+                <input type="number" id="math-answer" class="text-input" placeholder="Answer">
+                <button id="math-btn" class="action-btn" onclick="startOrCheckMath()">Start</button>
+                <div id="math-feedback"></div>
+            </div>
+        </div>
+
+        <div id="edu-pomodoro" class="screen">
+            <button class="back-btn" onclick="navigateTo('sec-edu')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <div class="action-box timer-container">
+                <div id="pomo-status" class="pomo-label">Focus</div>
+                <div id="pomo-time" class="pomo-clock">25:00</div>
+                <div class="timer-controls">
+                    <button class="ctrl-btn" onclick="togglePomodoro()"><i id="pomo-play-icon" class="fa-solid fa-play"></i></button>
+                    <button class="ctrl-btn" onclick="resetPomodoro()"><i class="fa-solid fa-rotate-left"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div id="sec-geo" class="screen">
+            <button class="back-btn" onclick="navigateTo('main-dashboard')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h2>World Map</h2>
+            <div id="geo-grid" class="geo-buttons-grid"></div>
+            <div id="geo-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-modal" onclick="closeGeoModal()">&times;</span>
+                    <div id="modal-body"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="sec-entertainment" class="screen">
+            <button class="back-btn" onclick="navigateTo('main-dashboard')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h2>Entertainment</h2>
+            <div class="options-grid">
+                <div class="option-card" onclick="navigateTo('ent-puzzle'); initPuzzle();">
+                    <i class="fa-solid fa-cubes"></i><h4>Number Puzzle</h4>
+                </div>
+                <div class="option-card" onclick="navigateTo('ent-scramble'); initScramble();">
+                    <i class="fa-solid fa-arrow-down-a-z"></i><h4>Word Scramble</h4>
+                </div>
+            </div>
+        </div>
+
+        <div id="ent-puzzle" class="screen">
+            <button class="back-btn" onclick="navigateTo('sec-entertainment')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <div class="action-box">
+                <div id="puzzle-board" class="puzzle-grid"></div>
+                <button class="action-btn" onclick="initPuzzle()">Shuffle</button>
+            </div>
+        </div>
+
+        <div id="ent-scramble" class="screen">
+            <button class="back-btn" onclick="navigateTo('sec-entertainment')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <div class="action-box">
+                <div id="scramble-word" class="scrambled-text">----</div>
+                <input type="text" id="scramble-input" class="text-input" placeholder="Your answer">
+                <button class="action-btn" onclick="checkScramble()">Submit</button>
+                <div id="scramble-feedback"></div>
+            </div>
+        </div>
+
+        <div id="sec-gaming" class="screen">
+            <button class="back-btn" onclick="navigateTo('main-dashboard')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h2>Game Zone</h2>
+            <div class="options-grid">
+                <div class="option-card" onclick="navigateTo('game-xo'); initXO();">
+                    <i class="fa-solid fa-x"></i><h4>Tic-Tac-Toe AI</h4>
+                </div>
+                <div class="option-card" onclick="navigateTo('game-memory'); initMemory();">
+                    <i class="fa-solid fa-clone"></i><h4>Memory Match</h4>
+                </div>
+            </div>
+        </div>
+
+        <div id="game-xo" class="screen">
+            <button class="back-btn" onclick="navigateTo('sec-gaming')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <div class="action-box">
+                <div id="xo-status">Your turn</div>
+                <div id="xo-board" class="xo-grid"></div>
+                <button class="action-btn" onclick="initXO()">Reset</button>
+            </div>
+        </div>
+
+        <div id="game-memory" class="screen">
+            <button class="back-btn" onclick="navigateTo('sec-gaming')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <div class="action-box">
+                <div id="memory-board" class="memory-grid"></div>
+                <button class="action-btn" onclick="initMemory()">Reset</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
