@@ -3,26 +3,260 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OmniVision AI - Premium Suite</title>
+    <title>SuperApp AI - Competition Edition</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="bg-blobs">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-    </div>
 
-    <div class="app-shell">
-        <header class="glass-header">
-            <button id="global-back" class="nav-btn hidden"><span>←</span> Back</button>
-            <h1 id="main-header-title">OmniVision AI</h1>
-            <div class="status-dot"></div>
+    <div class="app-container">
+        <header>
+            <h1 id="app-title">NovaSphere</h1>
+            <p id="app-subtitle">The Ultimate AI Smart Companion</p>
         </header>
 
-        <main id="app-viewport">
-            </main>
+        <main id="main-dashboard" class="view-section">
+            <div class="section-card" onclick="openSection('ai-health')">
+                <div class="icon-wrapper alert-glow"><i class="fa-solid fa-brain"></i></div>
+                <h3>AI Health & Fitness</h3>
+                <p>Calorie tracker & Height estimator via Vision AI</p>
+            </div>
+            
+            <div class="section-card" onclick="openSection('sleep-wellness')">
+                <div class="icon-wrapper"><i class="fa-solid fa-moon"></i></div>
+                <h3>Sleep & Wellness</h3>
+                <p>Optimize cycles & Personal hydration insights</p>
+            </div>
+
+            <div class="section-card" onclick="openSection('edu-academy')">
+                <div class="icon-wrapper"><i class="fa-solid fa-graduation-cap"></i></div>
+                <h3>Edu Academy</h3>
+                <p>Infinite math trainer & Premium Pomodoro</p>
+            </div>
+
+            <div class="section-card" onclick="openSection('geo-discover')">
+                <div class="icon-wrapper"><i class="fa-solid fa-earth-americas"></i></div>
+                <h3>Geo Discover</h3>
+                <p>Explore 195 nations, flags & hidden secrets</p>
+            </div>
+
+            <div class="section-card" onclick="openSection('entertainment')">
+                <div class="icon-wrapper"><i class="fa-solid fa-gamepad"></i></div>
+                <h3>Entertainment Hub</h3>
+                <p>Sliding puzzles, word scrambles & classic games</p>
+            </div>
+
+            <div class="section-card" onclick="openSection('lang-polyglot')">
+                <div class="icon-wrapper"><i class="fa-solid fa-language"></i></div>
+                <h3>Polyglot Academy</h3>
+                <p>Learn 30 languages via parallel short stories</p>
+            </div>
+        </main>
+
+        <div id="ai-health" class="view-section hidden">
+            <button class="back-btn" onclick="goBack('main-dashboard')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h2>AI Health & Vision</h2>
+            <div class="options-grid">
+                <div class="option-card" onclick="openSubOption('calorie-detector')">
+                    <i class="fa-solid fa-utensils"></i>
+                    <h4>AI Calorie Scanner</h4>
+                </div>
+                <div class="option-card" onclick="openSubOption('height-estimator')">
+                    <i class="fa-solid fa-ruler-vertical"></i>
+                    <h4>AI Wall Height Estimator</h4>
+                </div>
+            </div>
+        </div>
+
+        <div id="calorie-detector" class="view-section hidden">
+            <button class="back-btn" onclick="goBack('ai-health')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h3>AI Calorie Scanner</h3>
+            <div class="ai-box">
+                <p>Snap or upload your meal photo. Advanced Vision AI will calculate precise macronutrients.</p>
+                <input type="file" id="meal-upload" accept="image/*" class="hidden-input" onchange="processMealAI(event)">
+                <label for="meal-upload" class="action-btn"><i class="fa-solid fa-camera"></i> Scan Meal / Upload</label>
+                <div id="meal-preview-container" class="preview-box hidden">
+                    <img id="meal-preview" src="" alt="Meal">
+                </div>
+                <div id="calorie-result" class="ai-output hidden"></div>
+            </div>
+        </div>
+
+        <div id="height-estimator" class="view-section hidden">
+            <button class="back-btn" onclick="goBack('ai-health')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h3>AI Wall Height Estimator</h3>
+            <div class="ai-box">
+                <p>Stand straight against a wall and take a full-body photo. The AI detects spatial scale to estimate your height.</p>
+                <input type="file" id="height-upload" accept="image/*" class="hidden-input" onchange="processHeightAI(event)">
+                <label for="height-upload" class="action-btn"><i class="fa-solid fa-user-tall"></i> Take Photo / Upload</label>
+                <div id="height-preview-container" class="preview-box hidden">
+                    <img id="height-preview" src="" alt="Height Alignment">
+                </div>
+                <div id="height-result" class="ai-output hidden"></div>
+            </div>
+        </div>
+
+        <div id="sleep-wellness" class="view-section hidden">
+            <button class="back-btn" onclick="goBack('main-dashboard')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h2>Sleep & Wellness</h2>
+            <div class="options-grid">
+                <div class="option-card" onclick="openSubOption('sleep-calculator')">
+                    <i class="fa-solid fa-clock"></i>
+                    <h4>Optimal Wake Time</h4>
+                </div>
+                <div class="option-card" onclick="openSubOption('hydration-ai')">
+                    <i class="fa-solid fa-droplet"></i>
+                    <h4>Smart Hydration AI</h4>
+                </div>
+            </div>
+        </div>
+
+        <div id="sleep-calculator" class="view-section hidden">
+            <button class="back-btn" onclick="goBack('sleep-wellness')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h3>Optimal Sleep Cycle Calculator</h3>
+            <div class="interactive-box">
+                <p>If you sleep right now, your brain needs to complete full 90-minute REM cycles. Wake up at one of these times to avoid fatigue:</p>
+                <button class="action-btn" onclick="calculateSleepCycles()">Calculate Best Wake Times</button>
+                <div id="sleep-results" class="ai-output hidden"></div>
+            </div>
+        </div>
+
+        <div id="hydration-ai" class="view-section hidden">
+            <button class="back-btn" onclick="goBack('sleep-wellness')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h3>Smart Hydration Booster</h3>
+            <div class="interactive-box">
+                <p>Enter your weight to let the AI formulate your optimal personalized daily hydration target.</p>
+                <input type="number" id="user-weight" placeholder="Enter weight in kg" class="styled-input">
+                <button class="action-btn" onclick="calculateHydration()">Generate Dynamic Plan</button>
+                <div id="hydration-result" class="ai-output hidden"></div>
+            </div>
+        </div>
+
+        <div id="edu-academy" class="view-section hidden">
+            <button class="back-btn" onclick="goBack('main-dashboard')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h2>Edu Academy</h2>
+            <div class="options-grid">
+                <div class="option-card" onclick="openSubOption('math-trainer'); startMathGame();">
+                    <i class="fa-solid fa-calculator"></i>
+                    <h4>Progressive Math Game</h4>
+                </div>
+                <div class="option-card" onclick="openSubOption('pomodoro-timer')">
+                    <i class="fa-solid fa-stopwatch"></i>
+                    <h4>Futuristic Pomodoro</h4>
+                </div>
+            </div>
+        </div>
+
+        <div id="math-trainer" class="view-section hidden">
+            <button class="back-btn" onclick="goBack('edu-academy')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h3>Infinite Math Trainer (Level <span id="math-level">1</span>)</h3>
+            <div class="interactive-box">
+                <div id="math-question" class="math-expr">0 + 0</div>
+                <input type="number" id="math-answer" placeholder="Your Answer" class="styled-input">
+                <button class="action-btn" onclick="checkMathAnswer()">Submit Answer</button>
+                <div id="math-feedback" class="feedback"></div>
+            </div>
+        </div>
+
+        <div id="pomodoro-timer" class="view-section hidden">
+            <button class="back-btn" onclick="goBack('edu-academy')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h3>Futuristic Pomodoro</h3>
+            <div class="timer-box">
+                <div class="timer-circle">
+                    <span id="timer-display">25:00</span>
+                    <p id="timer-state">Focus Time</p>
+                </div>
+                <div class="timer-controls">
+                    <button id="pomo-start" class="ctrl-btn" onclick="togglePomodoro()"><i class="fa-solid fa-play"></i></button>
+                    <button class="ctrl-btn" onclick="resetPomodoro()"><i class="fa-solid fa-rotate-right"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div id="geo-discover" class="view-section hidden">
+            <button class="back-btn" onclick="goBack('main-dashboard')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h2>Geo Discover</h2>
+            <p class="subtitle">Explore 195 Countries & Hidden Secrets</p>
+            <div id="countries-container" class="countries-grid">
+                </div>
+        </div>
+
+        <div id="entertainment" class="view-section hidden">
+            <button class="back-btn" onclick="goBack('main-dashboard')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h2>Entertainment & Gaming Zone</h2>
+            <div class="options-grid">
+                <div class="option-card" onclick="openSubOption('puzzle-game'); initPuzzle();">
+                    <i class="fa-solid fa-cubes"></i>
+                    <h4>Sliding Puzzle</h4>
+                </div>
+                <div class="option-card" onclick="openSubOption('scramble-game'); initScramble();">
+                    <i class="fa-solid fa-font"></i>
+                    <h4>Word Scramble</h4>
+                </div>
+                <div class="option-card" onclick="openSubOption('xo-game'); initXO();">
+                    <i class="fa-solid fa-xmark"></i>
+                    <h4>Classic Tic-Tac-Toe</h4>
+                </div>
+            </div>
+        </div>
+
+        <div id="puzzle-game" class="view-section hidden">
+            <button class="back-btn" onclick="goBack('entertainment')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h3>Sliding Puzzle (Order the numbers)</h3>
+            <div class="interactive-box">
+                <div id="puzzle-board" class="puzzle-grid"></div>
+                <div id="puzzle-feedback" class="feedback"></div>
+            </div>
+        </div>
+
+        <div id="scramble-game" class="view-section hidden">
+            <button class="back-btn" onclick="goBack('entertainment')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h3>Word Scramble</h3>
+            <div class="interactive-box">
+                <div id="scrambled-word" class="scramble-txt">WORD</div>
+                <input type="text" id="scramble-input" placeholder="Rearrange letters here" class="styled-input">
+                <button class="action-btn" onclick="checkScramble()">Verify Word</button>
+                <div id="scramble-feedback" class="feedback"></div>
+            </div>
+        </div>
+
+        <div id="xo-game" class="view-section hidden">
+            <button class="back-btn" onclick="goBack('entertainment')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h3>Tic-Tac-Toe (vs Smart AI)</h3>
+            <div class="interactive-box">
+                <div id="xo-board" class="xo-grid"></div>
+                <div id="xo-feedback" class="feedback"></div>
+            </div>
+        </div>
+
+        <div id="lang-polyglot" class="view-section hidden">
+            <button class="back-btn" onclick="goBack('main-dashboard')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <h2>Polyglot Academy</h2>
+            <div class="interactive-box">
+                <label>Select Native Language (You Know):</label>
+                <select id="native-lang-select" class="styled-select" onchange="updateStoryInterface()"></select>
+
+                <label style="margin-top: 15px; display: block;">Select Target Language (To Learn):</label>
+                <select id="target-lang-select" class="styled-select" onchange="updateStoryInterface()"></select>
+
+                <div class="story-display-box">
+                    <div class="story-header-nav">
+                        <button class="nav-story-btn" onclick="changeStory(-1)"><i class="fa-solid fa-chevron-left"></i> Previous</button>
+                        <span id="story-number">Story 1 / 20</span>
+                        <button class="nav-story-btn" onclick="changeStory(1)">Next <i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                    
+                    <div class="story-content">
+                        <h5>Target Language (Read This):</h5>
+                        <p id="target-story-text" class="story-p-target"></p>
+                        <hr class="story-divider">
+                        <h5>Native Translation (Reference):</h5>
+                        <p id="native-story-text" class="story-p-native"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script src="script.js"></script>
