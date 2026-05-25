@@ -3,250 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OmniApp - Ultimate Multi-Tool</title>
+    <title>OmniVision AI - Premium Suite</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts for Professional Typography -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
 
-    <!-- Main Container -->
-    <div class="app-container">
-        
-        <!-- Header / Navigation Bar -->
-        <header class="app-header">
-            <button id="back-btn" class="back-btn hidden">← Back</button>
-            <h1 id="app-title">OmniApp Portal</h1>
+    <div class="app-shell">
+        <header class="glass-header">
+            <button id="global-back" class="nav-btn hidden"><span>←</span> Back</button>
+            <h1 id="main-header-title">OmniVision AI</h1>
+            <div class="status-dot"></div>
         </header>
 
-        <!-- Dynamic Content Screen -->
-        <main class="app-screen" id="main-screen">
-            
-            <!-- SCREEN 1: Dashboard (Main Categories) -->
-            <div id="dashboard-view" class="view">
-                <p class="welcome-text">Welcome! Choose a category to explore the power of AI and logic.</p>
-                <div class="category-grid">
-                    <div class="category-card" onclick="switchView('ai-options')">
-                        <div class="card-icon">🤖</div>
-                        <h3>AI Scanner (Core Feature)</h3>
-                        <p>Calorie tracker & Height estimator powered by AI.</p>
-                    </div>
-                    <div class="category-card" onclick="switchView('health-options')">
-                        <div class="card-icon">❤️</div>
-                        <h3>Health & Sleep</h3>
-                        <p>Optimize your sleep cycles and health metrics.</p>
-                    </div>
-                    <div class="category-card" onclick="switchView('edu-options')">
-                        <div class="card-icon">🎓</div>
-                        <h3>Education & Study</h3>
-                        <p>Math training and Pomodoro productivity timer.</p>
-                    </div>
-                    <div class="category-card" onclick="switchView('geo-options')">
-                        <div class="card-icon">🌍</div>
-                        <h3>Geography Explorer</h3>
-                        <p>Discover facts about 195 countries worldwide.</p>
-                    </div>
-                    <div class="category-card" onclick="switchView('language-options')">
-                        <div class="card-icon">🗣️</div>
-                        <h3>Language Learning</h3>
-                        <p>Read bilingual short stories in 30 languages.</p>
-                    </div>
-                    <div class="category-card" onclick="switchView('fun-options')">
-                        <div class="card-icon">🧩</div>
-                        <h3>Logic Puzzles</h3>
-                        <p>Sliding numbers and word scramble challenges.</p>
-                    </div>
-                    <div class="category-card" onclick="switchView('gaming-options')">
-                        <div class="card-icon">🎮</div>
-                        <h3>Gaming Zone</h3>
-                        <p>Quick, fun, and lightweight interactive games.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SCREEN 2: Category Options & Features -->
-            
-            <!-- AI Scanner Options -->
-            <div id="ai-options" class="view hidden">
-                <div class="options-list">
-                    <button class="menu-btn" onclick="switchView('ai-calorie')">🍎 AI Calorie Counter</button>
-                    <button class="menu-btn" onclick="switchView('ai-height')">📏 AI Height Estimator</button>
-                </div>
-            </div>
-            
-            <!-- AI Calorie Feature -->
-            <div id="ai-calorie" class="view hidden">
-                <h2>AI Calorie Counter</h2>
-                <p>Upload or take a photo of your meal. Our advanced AI will analyze the portion and ingredients.</p>
-                <div class="upload-box">
-                    <input type="file" id="calorie-input" accept="image/*" onchange="processAI('calorie')">
-                    <label for="calorie-input" class="upload-label">📸 Take Photo / Upload Image</label>
-                </div>
-                <div id="calorie-result" class="result-box hidden"></div>
-            </div>
-
-            <!-- AI Height Feature -->
-            <div id="ai-height" class="view hidden">
-                <h2>AI Height Estimator</h2>
-                <p>Stand straight against a wall and capture a full-body photo. The AI calculates height using perspective references.</p>
-                <div class="upload-box">
-                    <input type="file" id="height-input" accept="image/*" onchange="processAI('height')">
-                    <label for="height-input" class="upload-label">📸 Take Photo / Upload Image</label>
-                </div>
-                <div id="height-result" class="result-box hidden"></div>
-            </div>
-
-            <!-- Health & Sleep Options -->
-            <div id="health-options" class="view hidden">
-                <div class="options-list">
-                    <button class="menu-btn" onclick="switchView('sleep-calculator')">😴 Optimal Wake-up Timer</button>
-                    <button class="menu-btn" onclick="switchView('hydration-optimizer')">💧 Smart Hydration Advisor</button>
-                </div>
-            </div>
-
-            <!-- Sleep Calculator Feature -->
-            <div id="sleep-calculator" class="view hidden">
-                <h2>Optimal Wake-up Timer</h2>
-                <p>Based on scientific 90-minute sleep cycles. If you sleep right now, you should wake up at:</p>
-                <button class="action-btn" onclick="calculateSleepCycles()">Calculate Best Times</button>
-                <div id="sleep-result" class="result-box hidden"></div>
-            </div>
-
-            <!-- Hydration Feature (The Legendary Health Idea!) -->
-            <div id="hydration-optimizer" class="view hidden">
-                <h2>Smart Hydration Advisor</h2>
-                <p>Enter your body weight to calculate your customized daily water intake targets for optimal health.</p>
-                <div class="input-group">
-                    <input type="number" id="weight-input" placeholder="Enter weight in kg">
-                    <button class="action-btn" onclick="calculateHydration()">Calculate Plan</button>
-                </div>
-                <div id="hydration-result" class="result-box hidden"></div>
-            </div>
-
-            <!-- Education Options -->
-            <div id="edu-options" class="view hidden">
-                <div class="options-list">
-                    <button class="menu-btn" onclick="switchView('math-trainer')">🧮 Progressive Math Training</button>
-                    <button class="menu-btn" onclick="switchView('pomodoro-timer')">⏱️ Professional Pomodoro Timer</button>
-                </div>
-            </div>
-
-            <!-- Math Trainer Feature -->
-            <div id="math-trainer" class="view hidden">
-                <h2>Progressive Math Training</h2>
-                <p>Score: <span id="math-score">0</span>/1000 | Level: <span id="math-level">1</span></p>
-                <div class="math-card">
-                    <div id="math-question" class="question-text">Ready?</div>
-                    <input type="number" id="math-answer" placeholder="Your answer">
-                    <button class="action-btn" onclick="checkMathAnswer()">Submit</button>
-                </div>
-                <div id="math-feedback"></div>
-            </div>
-
-            <!-- Pomodoro Timer Feature -->
-            <div id="pomodoro-timer" class="view hidden">
-                <h2>Pomodoro Productivity Timer</h2>
-                <div class="timer-display" id="timer-clock">25:00</div>
-                <div class="timer-status" id="timer-status">Focus Session</div>
-                <div class="timer-controls">
-                    <button class="timer-btn" onclick="toggleTimer()">Start/Pause</button>
-                    <button class="timer-btn reset" onclick="resetTimer()">Reset</button>
-                </div>
-            </div>
-
-            <!-- Geography Feature -->
-            <div id="geo-options" class="view hidden">
-                <h2>Geography Explorer</h2>
-                <p>Explore hidden profiles and historical facts for all 195 countries.</p>
-                <div class="country-grid-container">
-                    <div id="country-grid" class="country-grid"></div>
-                </div>
-                <div id="country-modal" class="modal hidden">
-                    <div class="modal-content">
-                        <span class="close-modal" onclick="closeCountryModal()">&times;</span>
-                        <div id="country-detail-content"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Language Learning Options -->
-            <div id="language-options" class="view hidden">
-                <h2>Language Learning Hub</h2>
-                <div class="language-selection">
-                    <label>Your Fluent Language:</label>
-                    <select id="fluent-lang"></select>
-                    
-                    <label>Language to Learn:</label>
-                    <select id="target-lang"></select>
-                    
-                    <button class="action-btn" onclick="loadLanguageStories()">Generate Bilingual Stories</button>
-                </div>
-                <div id="stories-container" class="hidden">
-                    <h3>Available Stories (20 Stories Loaded)</h3>
-                    <div class="story-selector-grid" id="story-buttons"></div>
-                    <div id="story-display" class="story-display-box hidden"></div>
-                </div>
-            </div>
-
-            <!-- Logic Puzzles Options -->
-            <div id="fun-options" class="view hidden">
-                <div class="options-list">
-                    <button class="menu-btn" onclick="switchView('sliding-puzzle')">🧩 Progressive Sliding Puzzle</button>
-                    <button class="menu-btn" onclick="switchView('word-scramble')">🔤 Word Scramble Challenge</button>
-                </div>
-            </div>
-
-            <!-- Sliding Puzzle Feature -->
-            <div id="sliding-puzzle" class="view hidden">
-                <h2>Sliding Puzzle (Level <span id="puzzle-level">1</span>)</h2>
-                <p>Order the numbers sequentially.</p>
-                <div id="puzzle-board" class="puzzle-board"></div>
-                <button class="action-btn" onclick="initSlidingPuzzle()">Reset Board</button>
-            </div>
-
-            <!-- Word Scramble Feature -->
-            <div id="word-scramble" class="view hidden">
-                <h2>Word Scramble</h2>
-                <p>Unscramble the letters to find the correct word:</p>
-                <div id="scrambled-word" class="scrambled-box">-----</div>
-                <input type="text" id="scramble-input" placeholder="Type here...">
-                <button class="action-btn" onclick="checkScrambleWord()">Verify</button>
-                <div id="scramble-feedback"></div>
-            </div>
-
-            <!-- Gaming Zone Options -->
-            <div id="gaming-options" class="view hidden">
-                <div class="options-list">
-                    <button class="menu-btn" onclick="switchView('game-xo')">❌ Tic-Tac-Toe ⭕</button>
-                    <button class="menu-btn" onclick="switchView('game-memory')">🃏 Card Memory Match</button>
-                </div>
-            </div>
-
-            <!-- Tic Tac Toe Game -->
-            <div id="game-xo" class="view hidden">
-                <h2>Tic-Tac-Toe</h2>
-                <div class="xo-board" id="xo-board">
-                    <div class="cell" onclick="playXO(0)"></div>
-                    <div class="cell" onclick="playXO(1)"></div>
-                    <div class="cell" onclick="playXO(2)"></div>
-                    <div class="cell" onclick="playXO(3)"></div>
-                    <div class="cell" onclick="playXO(4)"></div>
-                    <div class="cell" onclick="playXO(5)"></div>
-                    <div class="cell" onclick="playXO(6)"></div>
-                    <div class="cell" onclick="playXO(7)"></div>
-                    <div class="cell" onclick="playXO(8)"></div>
-                </div>
-                <button class="action-btn" onclick="resetXO()">Reset Match</button>
-            </div>
-
-            <!-- Memory Game Feature -->
-            <div id="game-memory" class="view hidden">
-                <h2>Card Memory Match</h2>
-                <div id="memory-board" class="memory-board"></div>
-                <button class="action-btn" onclick="initMemoryGame()">Restart Game</button>
-            </div>
-
-        </main>
+        <main id="app-viewport">
+            </main>
     </div>
 
     <script src="script.js"></script>
