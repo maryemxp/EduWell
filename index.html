@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduWell AI - Winner Edition</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>EduWell AI 🏆</h1>
+  <p id="welcome">Welcome Student</p>
+
+  <div class="stats">
+    XP: <span id="xp">0</span> |
+    Level: <span id="level">1</span>
+  </div>
+</header>
+
+<main class="grid">
+
+  <section class="card">
+    <h2>🧠 Burnout AI</h2>
+    <input id="studyHours" type="number" placeholder="Study Hours">
+    <input id="sleepHours" type="number" placeholder="Sleep Hours">
+    <input id="screenHours" type="number" placeholder="Screen Time">
+    <input id="stressLevel" type="number" placeholder="Stress Level">
+    <button onclick="analyzeBurnout()">Analyze</button>
+    <p id="burnoutResult"></p>
+  </section>
+
+  <section class="card">
+    <h2>📚 Smart Summary AI</h2>
+    <input id="lessonInput" placeholder="Enter lesson">
+    <button onclick="generateSummary()">Generate</button>
+    <p id="summaryResult"></p>
+  </section>
+
+  <section class="card">
+    <h2>🥗 Food AI</h2>
+    <input id="mealInput" placeholder="Enter meal">
+    <button onclick="analyzeFood()">Analyze</button>
+    <p id="foodResult"></p>
+  </section>
+
+  <section class="card">
+    <h2>🏆 Challenges</h2>
+    <div onclick="toggle(this)" class="challenge">Drink Water</div>
+    <div onclick="toggle(this)" class="challenge">Sleep Early</div>
+    <div onclick="toggle(this)" class="challenge">Exercise</div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Made for Health + Education 🧠💙</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
